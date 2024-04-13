@@ -11,9 +11,7 @@ object dump: Tdump
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Font.Style = []
-  OldCreateOrder = False
   Position = poDesktopCenter
-  PixelsPerInch = 96
   TextHeight = 13
   object ControlBar1: TControlBar
     Left = 0
@@ -22,10 +20,11 @@ object dump: Tdump
     Height = 30
     Align = alTop
     TabOrder = 0
+    ExplicitWidth = 490
     object toolbar: TToolBar
       Left = 11
       Top = 2
-      Width = 477
+      Width = 473
       Height = 22
       Align = alNone
       Caption = 'toolbar'
@@ -76,6 +75,7 @@ object dump: Tdump
     Align = alLeft
     ItemHeight = 13
     TabOrder = 1
+    ExplicitHeight = 288
   end
   object pagecontrol: TPageControl
     Left = 137
@@ -85,6 +85,8 @@ object dump: Tdump
     ActivePage = Dumper
     Align = alClient
     TabOrder = 2
+    ExplicitWidth = 353
+    ExplicitHeight = 288
     object Dumper: TTabSheet
       Caption = 'Dumper'
       ImageIndex = 25
@@ -150,10 +152,6 @@ object dump: Tdump
     object unDumper: TTabSheet
       Caption = 'unDumper'
       ImageIndex = 108
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Bevel2: TBevel
         Left = 7
         Top = 221
@@ -181,10 +179,6 @@ object dump: Tdump
     object compressor: TTabSheet
       Caption = 'Compressor'
       ImageIndex = 34
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Bevel3: TBevel
         Left = 7
         Top = 221

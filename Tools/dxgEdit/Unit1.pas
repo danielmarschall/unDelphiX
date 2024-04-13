@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   DIB, StdCtrls, ExtCtrls, ComCtrls, ToolWin, Menus,
-  Buttons, ImgList, DXDraws, CheckLst, Spin, ExtDlgs;
+  Buttons, ImgList, DXDraws, CheckLst, Spin, ExtDlgs, System.ImageList;
 
 type
   TMain = class(TForm)
@@ -79,6 +79,10 @@ type
     procedure NewClick(Sender: TObject);
     procedure UpdateNameClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure InfoClick(Sender: TObject);
+    procedure ImageDownClick(Sender: TObject);
+    procedure ImageUpClick(Sender: TObject);
+    procedure ImageDelClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -97,12 +101,28 @@ var loop: integer;
 begin
   if OpenDialog.Execute then
   begin
+    Image.Picture := nil;
     ImageListBox.Items.Clear;
     DXImageList.Items.Clear;
     DXImageList.Items.LoadFromFile(OpenDialog.filename);
     for loop := 0 to DXImageList.Items.Count - 1 do
       ImageListBox.Items.Add(DXImageList.items[loop].Name);
   end;
+end;
+
+procedure TMain.ImageDelClick(Sender: TObject);
+begin
+  ShowMessage('Not implemented'); // TODO: Implement
+end;
+
+procedure TMain.ImageDownClick(Sender: TObject);
+begin
+  ShowMessage('Not implemented'); // TODO: Implement
+end;
+
+procedure TMain.ImageUpClick(Sender: TObject);
+begin
+  ShowMessage('Not implemented'); // TODO: Implement
 end;
 
 procedure TMain.ImageListBoxClick(Sender: TObject);
@@ -118,6 +138,11 @@ begin
   StatusBar.Panels[0].Text := 'Bitmap Info: ' +
     ' Width: ' + inttostr(dximagelist.items[i].Width) +
     ' Height: ' + inttostr(dximagelist.items[i].Height);
+end;
+
+procedure TMain.InfoClick(Sender: TObject);
+begin
+  ShowMessage('Simple DXG editor v 1.0');
 end;
 
 procedure TMain.FitImageClick(Sender: TObject);
@@ -153,6 +178,8 @@ begin
     ImageListBox.Items.Clear;
     for loop := 0 to DXImageList.Items.Count - 1 do
       ImageListBox.Items.Add(DXImageList.items[loop].Name);
+    ImageListBox.itemindex := i;
+    ImageListBoxClick(ImageListBox);
   end;
 end;
 
@@ -191,6 +218,7 @@ end;
 
 procedure TMain.NewClick(Sender: TObject);
 begin
+  Image.Picture := nil;
   ImageListBox.Items.Clear;
   DXImageList.Items.Clear;
 end;
@@ -205,6 +233,7 @@ begin
   ImageListBox.Items.Clear;
   for loop := 0 to DXImageList.Items.Count - 1 do
     ImageListBox.Items.Add(DXImageList.items[loop].Name);
+  ImageListBox.itemindex := i;
 end;
 
 procedure TMain.FormCreate(Sender: TObject);

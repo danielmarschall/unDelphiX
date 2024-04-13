@@ -1,7 +1,7 @@
 object Main: TMain
   Left = 228
   Top = 161
-  Caption = 'dxwEdit'
+  Caption = 'dxmEdit'
   ClientHeight = 464
   ClientWidth = 633
   Color = clBtnFace
@@ -50,15 +50,15 @@ object Main: TMain
       EdgeBorders = [ebLeft, ebTop, ebRight, ebBottom]
       Images = ImageList1
       TabOrder = 0
-      object AddWAV: TToolButton
+      object AddMIDI: TToolButton
         Left = 0
         Top = 0
-        Hint = 'Add WAV file.'
-        Caption = 'AddWAV'
+        Hint = 'Add MIDI file.'
+        Caption = 'AddMIDI'
         ImageIndex = 62
         ParentShowHint = False
         ShowHint = True
-        OnClick = AddWAVClick
+        OnClick = AddMIDIClick
       end
       object sep8: TToolButton
         Left = 23
@@ -89,7 +89,7 @@ object Main: TMain
       object ImageDown: TToolButton
         Left = 62
         Top = 0
-        Hint = 'Wave down.'
+        Hint = 'MIDI down.'
         Caption = 'ImageDown'
         ImageIndex = 25
         ParentShowHint = False
@@ -99,7 +99,7 @@ object Main: TMain
       object ImageUp: TToolButton
         Left = 85
         Top = 0
-        Hint = 'Wave up.'
+        Hint = 'MIDI up.'
         Caption = 'ImageUp'
         ImageIndex = 108
         ParentShowHint = False
@@ -117,7 +117,7 @@ object Main: TMain
       object ImageDel: TToolButton
         Left = 116
         Top = 0
-        Hint = 'Wave remove.'
+        Hint = 'MIDI remove.'
         Caption = 'ToolButton2'
         ImageIndex = 13
         ParentShowHint = False
@@ -125,15 +125,15 @@ object Main: TMain
         OnClick = ImageDelClick
       end
     end
-    object WaveListBox: TCheckListBox
+    object MidiListBox: TCheckListBox
       Left = 1
       Top = 31
       Width = 173
       Height = 386
       Align = alClient
-      ItemHeight = 17
+      ItemHeight = 13
       TabOrder = 1
-      OnClick = WaveListBoxClick
+      OnClick = MidiListBoxClick
       ExplicitHeight = 385
     end
   end
@@ -163,8 +163,8 @@ object Main: TMain
         Tag = 222
         Left = 0
         Top = 0
-        Hint = 'Play wave.'
-        Caption = 'PlayWav'
+        Hint = 'Start Music.'
+        Caption = 'PlayMidi'
         ImageIndex = 112
         ParentShowHint = False
         ShowHint = True
@@ -175,12 +175,20 @@ object Main: TMain
         Left = 25
         Top = 0
         Hint = 'Stop Music.'
-        Caption = 'StopMusic'
+        Caption = 'StopMidi'
         ImageIndex = 63
         OnClick = StopMusicClick
       end
-      object ToolButton1: TToolButton
+      object ListBox1: TListBox
         Left = 50
+        Top = 0
+        Width = 121
+        Height = 22
+        ItemHeight = 13
+        TabOrder = 1
+      end
+      object ToolButton1: TToolButton
+        Left = 171
         Top = 0
         Width = 8
         Caption = 'ToolButton1'
@@ -188,16 +196,16 @@ object Main: TMain
         Style = tbsSeparator
       end
       object Name: TEdit
-        Left = 58
+        Left = 179
         Top = 0
         Width = 121
         Height = 22
         TabOrder = 0
       end
       object UpdateName: TToolButton
-        Left = 179
+        Left = 300
         Top = 0
-        Hint = 'Rename wave.'
+        Hint = 'Rename MIDI.'
         Caption = 'UpdateName'
         ImageIndex = 83
         ParentShowHint = False
@@ -231,9 +239,9 @@ object Main: TMain
       object Label2: TLabel
         Left = 16
         Top = 48
-        Width = 61
+        Width = 55
         Height = 13
-        Caption = 'Wave name:'
+        Caption = 'MIDI name:'
       end
     end
   end
@@ -258,7 +266,7 @@ object Main: TMain
       object New: TToolButton
         Left = 0
         Top = 0
-        Hint = 'New DXW file.'
+        Hint = 'New DXM file.'
         Caption = 'New'
         ImageIndex = 5
         ParentShowHint = False
@@ -276,7 +284,7 @@ object Main: TMain
       object OpenButton: TToolButton
         Left = 33
         Top = 0
-        Hint = 'Open DXW file'
+        Hint = 'Open DXM file'
         Caption = 'OpenButton'
         ImageIndex = 32
         ParentShowHint = False
@@ -286,7 +294,7 @@ object Main: TMain
       object SaveButton: TToolButton
         Left = 58
         Top = 0
-        Hint = 'Save DXW file.'
+        Hint = 'Save DXM file.'
         Caption = 'SaveButton'
         ImageIndex = 87
         ParentShowHint = False
@@ -320,34 +328,28 @@ object Main: TMain
     Height = 19
     Panels = <
       item
-        Text = 'Wave Info:'
+        Text = 'MIDI Info:'
         Width = 250
       end>
     ExplicitTop = 444
     ExplicitWidth = 629
   end
   object OpenDialog: TOpenDialog
-    DefaultExt = '*.dxg'
-    Filter = 'DelphiX WaveList Files (*.dxw)|*.dxw'
+    DefaultExt = '*.dxm'
+    Filter = 'DelphiX Music Files (*.dxm)|*.dxm'
     Left = 536
     Top = 416
   end
   object SaveDialog: TSaveDialog
-    DefaultExt = '*.dxg'
-    Filter = 'DelphiX WaveList Files (*.dxw)|*.dxw'
+    DefaultExt = '*.dxm'
+    Filter = 'DelphiX Music Files (*.dxm)|*.dxm'
     Options = [ofOverwritePrompt, ofHideReadOnly, ofEnableSizing]
     Left = 568
     Top = 416
   end
-  object DXWaveList: TDXWaveList
-    DXSound = DXSound1
-    Items = <>
-    Left = 600
-    Top = 416
-  end
   object OpenDialog1: TOpenDialog
-    DefaultExt = '*.wav'
-    Filter = 'Wave Files (*.wav)|*.wav|All files (*.*)|*.*'
+    DefaultExt = '.mid'
+    Filter = 'MIDI Files (*.mid)|*.mid|All files (*.*)|*.*'
     Left = 504
     Top = 416
   end
@@ -4327,5 +4329,11 @@ object Main: TMain
       FF0100008383C003FF81000186C7F81FFF800003CC6DF81FFFC1007FF838F81F
       FFE7007FFC7DFC3FFFFFFFFFFEFFFFFF00000000000000000000000000000000
       000000000000}
+  end
+  object DXMusic1: TDXMusic
+    DXSound = DXSound1
+    Midis = <>
+    Left = 544
+    Top = 362
   end
 end

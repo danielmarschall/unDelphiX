@@ -3,7 +3,7 @@ object Main: TMain
   Top = 161
   Caption = 'dxgEdit'
   ClientHeight = 461
-  ClientWidth = 624
+  ClientWidth = 628
   Color = clBtnFace
   Constraints.MinHeight = 480
   Constraints.MinWidth = 640
@@ -12,9 +12,7 @@ object Main: TMain
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Font.Style = []
-  OldCreateOrder = False
   OnCreate = FormCreate
-  PixelsPerInch = 96
   TextHeight = 13
   object Splitter1: TSplitter
     Left = 0
@@ -41,6 +39,7 @@ object Main: TMain
     BevelOuter = bvLowered
     Caption = 'ItemPanel'
     TabOrder = 0
+    ExplicitHeight = 414
     object ImageBar: TToolBar
       Left = 1
       Top = 1
@@ -86,12 +85,14 @@ object Main: TMain
         Top = 0
         Caption = 'ImageDown'
         ImageIndex = 25
+        OnClick = ImageDownClick
       end
       object ImageUp: TToolButton
         Left = 85
         Top = 0
         Caption = 'ImageUp'
         ImageIndex = 108
+        OnClick = ImageUpClick
       end
       object sep1: TToolButton
         Left = 108
@@ -106,6 +107,7 @@ object Main: TMain
         Top = 0
         Caption = 'ToolButton2'
         ImageIndex = 13
+        OnClick = ImageDelClick
       end
     end
     object ImageListBox: TCheckListBox
@@ -114,23 +116,26 @@ object Main: TMain
       Width = 173
       Height = 383
       Align = alClient
-      ItemHeight = 13
+      ItemHeight = 17
       TabOrder = 1
       OnClick = ImageListBoxClick
+      ExplicitHeight = 382
     end
   end
   object PicturePanel: TPanel
     Left = 183
     Top = 27
-    Width = 441
+    Width = 445
     Height = 415
     Align = alClient
     BevelOuter = bvLowered
     TabOrder = 1
+    ExplicitWidth = 441
+    ExplicitHeight = 414
     object Image: TImage
       Left = 1
       Top = 121
-      Width = 439
+      Width = 443
       Height = 293
       Align = alClient
       Center = True
@@ -140,7 +145,7 @@ object Main: TMain
     object PropBar: TToolBar
       Left = 1
       Top = 1
-      Width = 439
+      Width = 443
       Height = 30
       BorderWidth = 1
       ButtonWidth = 25
@@ -148,6 +153,7 @@ object Main: TMain
       EdgeBorders = [ebLeft, ebTop, ebRight, ebBottom]
       Images = ImageList1
       TabOrder = 0
+      ExplicitWidth = 439
       object SysMem: TToolButton
         Left = 0
         Top = 0
@@ -259,7 +265,7 @@ object Main: TMain
     object AutoPatBar: TToolBar
       Left = 1
       Top = 91
-      Width = 439
+      Width = 443
       Height = 30
       BorderWidth = 1
       Caption = 'ToolBar4'
@@ -267,6 +273,7 @@ object Main: TMain
       Images = ImageList1
       TabOrder = 1
       Visible = False
+      ExplicitWidth = 439
       object AutoPatLabel: TPanel
         Left = 0
         Top = 0
@@ -299,7 +306,7 @@ object Main: TMain
     object PatternBar: TToolBar
       Left = 1
       Top = 31
-      Width = 439
+      Width = 443
       Height = 30
       BorderWidth = 1
       Caption = 'ToolBar4'
@@ -307,6 +314,7 @@ object Main: TMain
       Images = ImageList1
       TabOrder = 2
       Visible = False
+      ExplicitWidth = 439
       object PatLabel: TPanel
         Left = 0
         Top = 0
@@ -339,7 +347,7 @@ object Main: TMain
     object SkipBar: TToolBar
       Left = 1
       Top = 61
-      Width = 439
+      Width = 443
       Height = 30
       BorderWidth = 1
       Caption = 'ToolBar4'
@@ -347,6 +355,7 @@ object Main: TMain
       Images = ImageList1
       TabOrder = 3
       Visible = False
+      ExplicitWidth = 439
       object SkipLabel: TPanel
         Left = 0
         Top = 0
@@ -380,11 +389,12 @@ object Main: TMain
   object MainControlBar: TControlBar
     Left = 0
     Top = 0
-    Width = 624
+    Width = 628
     Height = 27
     Align = alTop
     BevelEdges = [beBottom]
     TabOrder = 2
+    ExplicitWidth = 624
     object MainToolBar: TToolBar
       Left = 11
       Top = 2
@@ -436,19 +446,22 @@ object Main: TMain
         Top = 0
         Caption = 'Info'
         ImageIndex = 50
+        OnClick = InfoClick
       end
     end
   end
   object StatusBar: TStatusBar
     Left = 0
     Top = 442
-    Width = 624
+    Width = 628
     Height = 19
     Panels = <
       item
         Text = 'Bitmap Info:'
         Width = 250
       end>
+    ExplicitTop = 441
+    ExplicitWidth = 624
   end
   object OpenDialog: TOpenDialog
     DefaultExt = '*.dxg'

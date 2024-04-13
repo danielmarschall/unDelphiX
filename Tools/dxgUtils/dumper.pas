@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   StdCtrls, ImgList, ComCtrls, ToolWin, ExtCtrls, ExtDlgs,
-  DXDraws, DIB;
+  DXDraws, DIB, System.ImageList;
 
 type
   Tdump = class(TForm)

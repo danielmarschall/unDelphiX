@@ -25,7 +25,7 @@ type
     ImageDown: TToolButton;
     ImageUp: TToolButton;
     sep3: TToolButton;
-    AddWAV: TToolButton;
+    AddMIDI: TToolButton;
     sep1: TToolButton;
     sep7: TToolButton;
     Info: TToolButton;
@@ -33,13 +33,12 @@ type
     sep8: TToolButton;
     PropBar: TToolBar;
     PlayWav: TToolButton;
-    WaveListBox: TCheckListBox;
+    MidiListBox: TCheckListBox;
     New: TToolButton;
     sep2: TToolButton;
       Name: TEdit;
     ToolButton1: TToolButton;
     UpdateName: TToolButton;
-    DXWaveList: TDXWaveList;
     Panel1: TPanel;
     Label1: TLabel;
     OpenDialog1: TOpenDialog;
@@ -47,10 +46,12 @@ type
     DXSound1: TDXSound;
     StopMusic: TToolButton;
     ImageList1: TImageList;
+    DXMusic1: TDXMusic;
+    ListBox1: TListBox;
     procedure OpenButtonClick(Sender: TObject);
-    procedure WaveListBoxClick(Sender: TObject);
+    procedure MidiListBoxClick(Sender: TObject);
     procedure PlayWavClick(Sender: TObject);
-    procedure AddWAVClick(Sender: TObject);
+    procedure AddMIDIClick(Sender: TObject);
     procedure CheckAllClick(Sender: TObject);
     procedure SaveButtonClick(Sender: TObject);
     procedure NewClick(Sender: TObject);
@@ -58,9 +59,9 @@ type
     procedure FormCreate(Sender: TObject);
     procedure InfoClick(Sender: TObject);
     procedure StopMusicClick(Sender: TObject);
+    procedure ImageDelClick(Sender: TObject);
     procedure ImageDownClick(Sender: TObject);
     procedure ImageUpClick(Sender: TObject);
-    procedure ImageDelClick(Sender: TObject);
   private
     { Private declarations }
     CurrentSnd:String;
@@ -82,29 +83,29 @@ begin
   begin
     if CurrentSnd <> '' then StopMusic.Click;
     Label1.Caption := '...';
-    WaveListBox.Items.Clear;
-    DXWaveList.Items.Clear;
-    DXWaveList.Items.LoadFromFile(OpenDialog.filename);
-    for loop := 0 to DXWaveList.Items.Count - 1 do
-      WaveListBox.Items.Add(DXWaveList.items[loop].Name);
+    MidiListBox.Items.Clear;
+    DXMusic1.Midis.Clear;
+    DXMusic1.Midis.LoadFromFile(OpenDialog.filename);
+    for loop := 0 to DXMusic1.Midis.Count - 1 do
+      MidiListBox.Items.Add(DXMusic1.Midis.items[loop].Name);
   end;
 end;
 
-procedure TMain.WaveListBoxClick(Sender: TObject);
+procedure TMain.MidiListBoxClick(Sender: TObject);
 var i: integer;
 begin
-  if WaveListBox.Itemindex = -1 then exit;
+  if MidiListBox.Itemindex = -1 then exit;
   try
     if CurrentSnd <> '' then StopMusic.Click;
   except
   end;
   CurrentSnd := '';
-  i := WaveListBox.itemindex {+ 1};
-  Label1.Caption := DXWaveList.items[i].name;
-  Name.Text := DXWaveList.Items[i].Name;
-  StatusBar.Panels[0].Text := 'Wave Info: ' +
-    ' Size: ' + IntToStr(DXWaveList.Items[i].Wave.Size) +
-    ' Format: ' + IntToStr(DXWaveList.Items[i].Wave.FormatSize);
+  i := MidiListBox.itemindex {+ 1};
+  Label1.Caption := DXMusic1.Midis.items[i].name;
+  Name.Text := DXMusic1.Midis.Items[i].Name;
+  StatusBar.Panels[0].Text := 'MIDI Info: ' +
+    ' Size: ' + IntToStr(DXMusic1.Midis.Items[i].Size) {+
+    ' Duration: ' + IntToStr(DXMusic1.Midis.Items[i].Duration)}; // TODO: Why is duration always 0?
 end;
 
 procedure TMain.PlayWavClick(Sender: TObject);
@@ -112,39 +113,38 @@ begin
   If Label1.Caption <> '' Then
   Begin
     CurrentSnd := Label1.Caption;
-    DXWaveList.Items.Find(CurrentSnd).Play(False);
+    DXMusic1.Midis.Find(CurrentSnd).Play;
   End;
 end;
 
-procedure TMain.AddWAVClick(Sender: TObject);
+procedure TMain.AddMIDIClick(Sender: TObject);
 var i, loop: integer;
 begin
   if OpenDialog1.Execute then
   begin
-    i := DXWaveList.Items.Add.Index;
-    DXWaveList.Items[i].Wave.LoadFromFile(OpenDialog1.Filename);
-    DXWaveList.Items[i].Name := ExtractFileName(ChangeFileExt(OpenDialog1.Filename, ''));
-    DXWaveList.Items[i].Restore;
-    WaveListBox.Items.Clear;
-    for loop := 0 to DXWaveList.Items.Count - 1 do
-      WaveListBox.Items.Add(DXWaveList.items[loop].Name);
-    WaveListBox.itemindex := i;
-    WaveListBoxClick(WaveListBox);
+    i := DXMusic1.Midis.Add.Index;
+    DXMusic1.Midis.Items[i].LoadFromFile(OpenDialog1.Filename);
+    DXMusic1.Midis.Items[i].Name := ExtractFileName(ChangeFileExt(OpenDialog1.Filename, ''));
+    MidiListBox.Items.Clear;
+    for loop := 0 to DXMusic1.Midis.Count - 1 do
+      MidiListBox.Items.Add(DXMusic1.Midis.items[loop].Name);
+    MidiListBox.itemindex := i;
+    MidiListBoxClick(MidiListBox);
   end;
 end;
 
 procedure TMain.CheckAllClick(Sender: TObject);
 var loop: integer;
 begin
-  for loop := 0 to WaveListBox.Items.Count - 1 do
-    WaveListBox.Checked[loop] := True;
+  for loop := 0 to MidiListBox.Items.Count - 1 do
+    MidiListBox.Checked[loop] := True;
 end;
 
 procedure TMain.SaveButtonClick(Sender: TObject);
 begin
   if SaveDialog.Execute then
   begin
-    DXWaveList.Items.SaveToFile(SaveDialog.filename);
+    DXMusic1.Midis.SaveToFile(SaveDialog.filename);
   end;
 end;
 
@@ -152,23 +152,22 @@ procedure TMain.NewClick(Sender: TObject);
 begin
   if CurrentSnd <> '' then StopMusic.Click;
   Label1.Caption := '...';
-  WaveListBox.Items.Clear;
-  DXWaveList.Items.Clear;
+  MidiListBox.Items.Clear;
+  DXMusic1.Midis.Clear;
 end;
 
 procedure TMain.UpdateNameClick(Sender: TObject);
 var i, loop: integer;
 begin
-  if WaveListBox.Itemindex = -1 then exit;
-  i := WaveListBox.itemindex {+ 1};
-  if CurrentSnd = DXWaveList.Items[i].Name then CurrentSnd := Name.Text;
-  DXWaveList.Items[i].Name := Name.Text;
+  if MidiListBox.Itemindex = -1 then exit;
+  i := MidiListBox.itemindex {+ 1};
+  if CurrentSnd = DXMusic1.Midis.Items[i].Name then CurrentSnd := Name.Text;
+  DXMusic1.Midis.Items[i].Name := Name.Text;
   Label1.Caption := Name.Text;
-  DXWaveList.Items[i].Restore;
-  WaveListBox.Items.Clear;
-  for loop := 0 to DXWaveList.Items.Count - 1 do
-    WaveListBox.Items.Add(DXWaveList.items[loop].Name);
-  WaveListBox.itemindex := i;
+  MidiListBox.Items.Clear;
+  for loop := 0 to DXMusic1.Midis.Count - 1 do
+    MidiListBox.Items.Add(DXMusic1.Midis.items[loop].Name);
+  MidiListBox.itemindex := i;
 end;
 
 procedure TMain.FormCreate(Sender: TObject);
@@ -176,39 +175,39 @@ var loop: Integer;
 begin
   If ParamCount > 0 Then
   Begin
-    WaveListBox.Items.Clear;
-    DXWaveList.Items.Clear;
-    DXWaveList.Items.LoadFromFile(ParamStr(1));
-    for loop := 0 to DXWaveList.Items.Count - 1 do
-      WaveListBox.Items.Add(DXWaveList.items[loop].Name);
+    MidiListBox.Items.Clear;
+    DXMusic1.Midis.Clear;
+    DXMusic1.Midis.LoadFromFile(ParamStr(1));
+    for loop := 0 to DXMusic1.Midis.Count - 1 do
+      MidiListBox.Items.Add(DXMusic1.Midis.items[loop].Name);
   End;
   CurrentSnd := '';
 end;
 
 procedure TMain.ImageDelClick(Sender: TObject);
 begin
-  ShowMessage('Not implemented'); // TODO: Implement
+  // TODO: Implement!
 end;
 
 procedure TMain.ImageDownClick(Sender: TObject);
 begin
-  ShowMessage('Not implemented'); // TODO: Implement
+  // TODO: Implement!
 end;
 
 procedure TMain.ImageUpClick(Sender: TObject);
 begin
-  ShowMessage('Not implemented'); // TODO: Implement
+  // TODO: Implement!
 end;
 
 procedure TMain.InfoClick(Sender: TObject);
 begin
-  ShowMessage('Simple DXW editor v 1.0 (derived from DXG).');
+  ShowMessage('Simple DXM editor v 1.0 (derived from DXW).');
 end;
 
 procedure TMain.StopMusicClick(Sender: TObject);
 begin
   If CurrentSnd <> '' Then
-    DXWaveList.Items.Find(CurrentSnd).Stop;
+    DXMusic1.Midis.Find(CurrentSnd).Stop;
   CurrentSnd := '';
 end;
 
