@@ -18,6 +18,12 @@ unit DirectPlay;
 
 interface
 
+{$INCLUDE DelphiXcfg.inc}
+
+{$IFNDEF UseDirectPlay} // Daniel Marschall 12.04.2024 Added to avoid Windows showing "This app requires DirectPlay"
+{$MESSAGE ERROR 'If you want to use DXPlay.pas, please enable the IFDEF UseDirectPlay in DelphiXcfg.inc'}
+{$ENDIF}
+
 {$MINENUMSIZE 4}
 {$ALIGN ON}
 

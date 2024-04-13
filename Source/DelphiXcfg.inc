@@ -910,3 +910,8 @@
 {special feature for enumerate displayis like primary, secondary etc.}
 {only for special purpose, multimonitors etc.}
 {.$DEFINE _DMO_}
+
+{When you need DirectPlay, please remove the dot. It is not enabled by default, because}
+{DirectPlay is not shipped with Windows by default, and the user might receive a warning}
+{that the app might not work if DirectPlay is not installed.}
+{.$Define UseDirectPlay}

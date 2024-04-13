@@ -51,6 +51,14 @@ Interface
 
 uses
   Windows, MMSystem;
+
+type
+{$IFDEF UNICODE}
+  PCharAW = PWideChar;
+{$ELSE}
+  PCharAW = PAnsiChar;
+{$ENDIF}
+
 //DirectDraw file
 (*==========================================================================;
  *
@@ -14456,6 +14464,7 @@ const
  *)
   JOY_OEMPOLL_PASSDRIVERDATA  = 7;
 
+{$IFDEF UseDirectPlay} // Daniel Marschall 12.04.2024 Added to avoid Windows showing "This app requires DirectPlay"
 //DirectPlay file
 
 (*==========================================================================;
@@ -14528,12 +14537,7 @@ const
  ****************************************************************************)
 
 type
-{$IFDEF UNICODE}
-  PCharAW = PWideChar;
-{$ELSE}
-  PCharAW = PAnsiChar;
-{$ENDIF}
-(*
+ (*
  * TDPID
  * DirectPlay player and group ID
  *)
@@ -15417,7 +15421,7 @@ const
   DPRECEIVE_ALL = $00000001;
 
 (*
- * Get the first message in the queue directed to a specific player 
+ * Get the first message in the queue directed to a specific player
  *)
   DPRECEIVE_TOPLAYER = $00000002;
 
@@ -15501,7 +15505,7 @@ const
  *
  ****************************************************************************)
 
-(* 
+(*
  * Propagate the data to all players in the session
  *)
   DPSET_REMOTE = $00000000;
@@ -16845,7 +16849,7 @@ const
  ****************************************************************************)
 
   DPLAD_SYSTEM = DPLMSG_SYSTEM;
- 
+{$ENDIF} // UseDirectPlay
 
 //DirectSetup file
 (*==========================================================================
@@ -22634,6 +22638,7 @@ begin
 end;
 
 //DirectPlay file
+{$IFDEF UseDirectPlay} // Daniel Marschall 12.04.2024 Added to avoid Windows showing "This app requires DirectPlay"
 
 (*==========================================================================;
  *
@@ -22702,6 +22707,7 @@ begin
     else Result := 'Unrecognized Error';
   end;
 end;
+{$ENDIF} // UseDirectPlay
 
 //DirectSetup file
 
@@ -22986,6 +22992,7 @@ begin
   end;
   {DirectInput}
   {DirectPlay}
+  {$IFDEF UseDirectPlay} // Daniel Marschall 12.04.2024 Added to avoid Windows showing "This app requires DirectPlay"
   if not IsNTandDelphiRunning then
   begin
     DPlayDLL := LoadLibrary('DPlayX.dll');
@@ -23011,6 +23018,7 @@ begin
   {$ENDIF}
 
   end;
+  {$ENDIF} // UseDirectPlay
   {DirectPlay}
   {DirectSetup}
   if not IsNTandDelphiRunning then
@@ -23065,7 +23073,9 @@ begin
   FreeLibrary(DInputDLL);
   {DirectInput}
   {DirectPlay}
+  {$IFDEF UseDirectPlay} // Daniel Marschall 12.04.2024 Added to avoid Windows showing "This app requires DirectPlay"
   if DPlayDLL <> 0 then FreeLibrary(DPlayDLL);
+  {$ENDIF} // UseDirectPlay
   {DirectPlay}
   {DirectSetup}
   FreeLibrary(DSetupDLL);
