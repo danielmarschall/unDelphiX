@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   DIB, StdCtrls, ExtCtrls, ComCtrls, ToolWin, Menus,
-  Buttons, ImgList, DXDraws, CheckLst, Spin, ExtDlgs, System.ImageList;
+  Buttons, ImgList, DXDraws, Spin, ExtDlgs, System.ImageList;
 
 type
   TMain = class(TForm)
@@ -25,12 +25,10 @@ type
     ImageDel: TToolButton;
     ImageDown: TToolButton;
     ImageUp: TToolButton;
-    sep3: TToolButton;
     AddBMP: TToolButton;
     sep1: TToolButton;
     sep7: TToolButton;
     Info: TToolButton;
-    CheckAll: TToolButton;
     sep8: TToolButton;
     PropBar: TToolBar;
     SysMem: TToolButton;
@@ -57,7 +55,7 @@ type
     sep6: TToolButton;
     FitImage: TToolButton;
     OpenPictureDialog: TOpenPictureDialog;
-    ImageListBox: TCheckListBox;
+    ImageListBox: TListBox;
     New: TToolButton;
     sep2: TToolButton;
     Image: TImage;
@@ -74,7 +72,6 @@ type
     procedure AddBMPClick(Sender: TObject);
     procedure SysMemClick(Sender: TObject);
     procedure TransClick(Sender: TObject);
-    procedure CheckAllClick(Sender: TObject);
     procedure SaveButtonClick(Sender: TObject);
     procedure NewClick(Sender: TObject);
     procedure UpdateNameClick(Sender: TObject);
@@ -218,13 +215,6 @@ begin
   i := ImageListBox.itemindex;
   dximagelist.Items[i].Transparent := Trans.Down;
   dximagelist.Items[i].Restore;
-end;
-
-procedure TMain.CheckAllClick(Sender: TObject);
-var loop: integer;
-begin
-  for loop := 0 to ImageListBox.Items.Count - 1 do
-    ImageListBox.Checked[loop] := True;
 end;
 
 procedure TMain.SaveButtonClick(Sender: TObject);

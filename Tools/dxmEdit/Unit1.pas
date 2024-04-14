@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  DIB, StdCtrls, ExtCtrls, ComCtrls, ToolWin, Menus, Buttons, ImgList, CheckLst,
+  DIB, StdCtrls, ExtCtrls, ComCtrls, ToolWin, Menus, Buttons, ImgList,
   Spin, ExtDlgs, DXSounds, System.ImageList;
 
 type
@@ -24,16 +24,14 @@ type
     ImageDel: TToolButton;
     ImageDown: TToolButton;
     ImageUp: TToolButton;
-    sep3: TToolButton;
     AddMIDI: TToolButton;
     sep1: TToolButton;
     sep7: TToolButton;
     Info: TToolButton;
-    CheckAll: TToolButton;
     sep8: TToolButton;
     PropBar: TToolBar;
     PlayWav: TToolButton;
-    MidiListBox: TCheckListBox;
+    MidiListBox: TListBox;
     New: TToolButton;
     sep2: TToolButton;
       Name: TEdit;
@@ -52,7 +50,6 @@ type
     procedure MidiListBoxClick(Sender: TObject);
     procedure PlayWavClick(Sender: TObject);
     procedure AddMIDIClick(Sender: TObject);
-    procedure CheckAllClick(Sender: TObject);
     procedure SaveButtonClick(Sender: TObject);
     procedure NewClick(Sender: TObject);
     procedure UpdateNameClick(Sender: TObject);
@@ -131,13 +128,6 @@ begin
     MidiListBox.itemindex := i;
     MidiListBoxClick(MidiListBox);
   end;
-end;
-
-procedure TMain.CheckAllClick(Sender: TObject);
-var loop: integer;
-begin
-  for loop := 0 to MidiListBox.Items.Count - 1 do
-    MidiListBox.Checked[loop] := True;
 end;
 
 procedure TMain.SaveButtonClick(Sender: TObject);

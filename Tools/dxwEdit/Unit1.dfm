@@ -12,6 +12,7 @@ object Main: TMain
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Font.Style = []
+  Position = poScreenCenter
   OnCreate = FormCreate
   TextHeight = 13
   object Splitter1: TSplitter
@@ -68,26 +69,8 @@ object Main: TMain
         ImageIndex = 88
         Style = tbsSeparator
       end
-      object CheckAll: TToolButton
-        Left = 31
-        Top = 0
-        Hint = 'Check all items.'
-        Caption = 'CheckAll'
-        ImageIndex = 0
-        ParentShowHint = False
-        ShowHint = True
-        OnClick = CheckAllClick
-      end
-      object sep3: TToolButton
-        Left = 54
-        Top = 0
-        Width = 8
-        Caption = 'sep3'
-        ImageIndex = 109
-        Style = tbsSeparator
-      end
       object ImageDown: TToolButton
-        Left = 62
+        Left = 31
         Top = 0
         Hint = 'Wave down.'
         Caption = 'ImageDown'
@@ -97,7 +80,7 @@ object Main: TMain
         OnClick = ImageDownClick
       end
       object ImageUp: TToolButton
-        Left = 85
+        Left = 54
         Top = 0
         Hint = 'Wave up.'
         Caption = 'ImageUp'
@@ -107,7 +90,7 @@ object Main: TMain
         OnClick = ImageUpClick
       end
       object sep1: TToolButton
-        Left = 108
+        Left = 77
         Top = 0
         Width = 8
         Caption = 'sep1'
@@ -115,7 +98,7 @@ object Main: TMain
         Style = tbsSeparator
       end
       object ImageDel: TToolButton
-        Left = 116
+        Left = 85
         Top = 0
         Hint = 'Wave remove.'
         Caption = 'ToolButton2'
@@ -125,13 +108,13 @@ object Main: TMain
         OnClick = ImageDelClick
       end
     end
-    object WaveListBox: TCheckListBox
+    object WaveListBox: TListBox
       Left = 1
       Top = 31
       Width = 173
       Height = 386
       Align = alClient
-      ItemHeight = 17
+      ItemHeight = 13
       TabOrder = 1
       OnClick = WaveListBoxClick
       ExplicitHeight = 385

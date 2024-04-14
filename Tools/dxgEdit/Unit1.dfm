@@ -12,6 +12,7 @@ object Main: TMain
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Font.Style = []
+  Position = poScreenCenter
   OnCreate = FormCreate
   TextHeight = 13
   object Splitter1: TSplitter
@@ -65,37 +66,22 @@ object Main: TMain
         ImageIndex = 88
         Style = tbsSeparator
       end
-      object CheckAll: TToolButton
-        Left = 31
-        Top = 0
-        Caption = 'CheckAll'
-        ImageIndex = 0
-        OnClick = CheckAllClick
-      end
-      object sep3: TToolButton
-        Left = 54
-        Top = 0
-        Width = 8
-        Caption = 'sep3'
-        ImageIndex = 109
-        Style = tbsSeparator
-      end
       object ImageDown: TToolButton
-        Left = 62
+        Left = 31
         Top = 0
         Caption = 'ImageDown'
         ImageIndex = 25
         OnClick = ImageDownClick
       end
       object ImageUp: TToolButton
-        Left = 85
+        Left = 54
         Top = 0
         Caption = 'ImageUp'
         ImageIndex = 108
         OnClick = ImageUpClick
       end
       object sep1: TToolButton
-        Left = 108
+        Left = 77
         Top = 0
         Width = 8
         Caption = 'sep1'
@@ -103,20 +89,20 @@ object Main: TMain
         Style = tbsSeparator
       end
       object ImageDel: TToolButton
-        Left = 116
+        Left = 85
         Top = 0
         Caption = 'ToolButton2'
         ImageIndex = 13
         OnClick = ImageDelClick
       end
     end
-    object ImageListBox: TCheckListBox
+    object ImageListBox: TListBox
       Left = 1
       Top = 31
       Width = 173
       Height = 383
       Align = alClient
-      ItemHeight = 17
+      ItemHeight = 13
       TabOrder = 1
       OnClick = ImageListBoxClick
       ExplicitHeight = 382
