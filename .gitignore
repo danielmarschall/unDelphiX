@@ -1,0 +1,11 @@
+Source/__history/
+Source/*.dcu
+Source/*.local
+Source/*.identcache
+Source/SXMedia/*.dcu
+Tools/*/__history/
+Tools/*/*.dproj
+Tools/*/*.local
+Tools/*/*.identcache
+Tools/*/*.otares
+Tools/*/*.ico
