@@ -9,3 +9,14 @@ Tools/*/*.local
 Tools/*/*.identcache
 Tools/*/*.otares
 Tools/*/*.ico
+Tools/*/*.exe
+Tools/*/*.dcu
+Samples/*/*/__history/
+Samples/*/*/*.dcu
+Samples/*/*/*.exe
+Samples/*/*/*.local
+Samples/*/*/*.identcache
+Samples/*/*.local
+Samples/*/*.identcache
+Samples/*.local
+Samples/*.identcache
