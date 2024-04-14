@@ -185,18 +185,37 @@ begin
 end;
 
 procedure TMain.ImageDelClick(Sender: TObject);
+var i, loop: Integer;
 begin
-  // TODO: Implement!
+  StopMusic.Click;
+  i := MidiListBox.itemindex;
+  if i = -1 then exit;
+  DXMusic1.Midis.Delete(i);
+  MidiListBox.Items.Clear;
+  for loop := 0 to DXMusic1.Midis.Count - 1 do
+    MidiListBox.Items.Add(DXMusic1.Midis.items[loop].Name);
 end;
 
 procedure TMain.ImageDownClick(Sender: TObject);
+var
+  i: Integer;
 begin
-  // TODO: Implement!
+  i := MidiListBox.itemindex;
+  if i = -1 then exit;
+  if dxMusic1.Midis.Items[i].Index = dxMusic1.Midis.Count-1 then exit; // already at the end
+  dxMusic1.Midis.Items[i].Index := dxMusic1.Midis.Items[i].Index + 1; // move down
+  MidiListBox.Items.Exchange(i, i+1);
 end;
 
 procedure TMain.ImageUpClick(Sender: TObject);
+var
+  i: Integer;
 begin
-  // TODO: Implement!
+  i := MidiListBox.itemindex;
+  if i = -1 then exit;
+  if dxMusic1.Midis.Items[i].Index = 0 then exit; // already at the top
+  dxMusic1.Midis.Items[i].Index := dxMusic1.Midis.Items[i].Index - 1; // move up
+  MidiListBox.Items.Exchange(i, i-1);
 end;
 
 procedure TMain.InfoClick(Sender: TObject);

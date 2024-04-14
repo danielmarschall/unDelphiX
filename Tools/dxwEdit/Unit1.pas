@@ -186,18 +186,38 @@ begin
 end;
 
 procedure TMain.ImageDelClick(Sender: TObject);
+var
+  loop, i: Integer;
 begin
-  ShowMessage('Not implemented'); // TODO: Implement
+  StopMusic.Click;
+  i := WaveListBox.itemindex;
+  if i = -1 then exit;
+  DXWaveList.Items.Delete(i);
+  WaveListBox.Items.Clear;
+  for loop := 0 to DXWaveList.Items.Count - 1 do
+    WaveListBox.Items.Add(DXWaveList.Items.items[loop].Name);
 end;
 
 procedure TMain.ImageDownClick(Sender: TObject);
+var
+  i: Integer;
 begin
-  ShowMessage('Not implemented'); // TODO: Implement
+  i := WaveListBox.itemindex;
+  if i = -1 then exit;
+  if DXWaveList.Items.Items[i].Index = DXWaveList.Items.Count-1 then exit; // already at the end
+  DXWaveList.Items.Items[i].Index := DXWaveList.Items.Items[i].Index + 1; // move down
+  WaveListBox.Items.Exchange(i, i+1);
 end;
 
 procedure TMain.ImageUpClick(Sender: TObject);
+var
+  i: Integer;
 begin
-  ShowMessage('Not implemented'); // TODO: Implement
+  i := WaveListBox.itemindex;
+  if i = -1 then exit;
+  if DXWaveList.Items.Items[i].Index = 0 then exit; // already at the top
+  DXWaveList.Items.Items[i].Index := DXWaveList.Items.Items[i].Index - 1; // move up
+  WaveListBox.Items.Exchange(i, i-1);
 end;
 
 procedure TMain.InfoClick(Sender: TObject);

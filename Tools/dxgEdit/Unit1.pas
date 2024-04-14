@@ -111,18 +111,37 @@ begin
 end;
 
 procedure TMain.ImageDelClick(Sender: TObject);
+var
+  loop, i: integer;
 begin
-  ShowMessage('Not implemented'); // TODO: Implement
+  i := ImageListBox.itemindex;
+  if i = -1 then exit;
+  DXImageList.Items.Delete(i);
+  ImageListBox.Items.Clear;
+  for loop := 0 to DXImageList.Items.Count - 1 do
+    ImageListBox.Items.Add(DXImageList.Items.items[loop].Name);
 end;
 
 procedure TMain.ImageDownClick(Sender: TObject);
+var
+  i: Integer;
 begin
-  ShowMessage('Not implemented'); // TODO: Implement
+  i := ImageListBox.itemindex;
+  if i = -1 then exit;
+  if DXImageList.Items.Items[i].Index = DXImageList.Items.Count-1 then exit; // already at the end
+  DXImageList.Items.Items[i].Index := DXImageList.Items.Items[i].Index + 1; // move down
+  ImageListBox.Items.Exchange(i, i+1);
 end;
 
 procedure TMain.ImageUpClick(Sender: TObject);
+var
+  i: Integer;
 begin
-  ShowMessage('Not implemented'); // TODO: Implement
+  i := ImageListBox.itemindex;
+  if i = -1 then exit;
+  if DXImageList.Items.Items[i].Index = 0 then exit; // already at the top
+  DXImageList.Items.Items[i].Index := DXImageList.Items.Items[i].Index - 1; // move up
+  ImageListBox.Items.Exchange(i, i-1);
 end;
 
 procedure TMain.ImageListBoxClick(Sender: TObject);
