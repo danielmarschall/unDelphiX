@@ -222,7 +222,9 @@ begin
 
   RegisterComponentEditor(TCustomDXInput, TDXInputEditor);
 
+  {$IFDEF UseDirectPlay}
   RegisterPropertyEditor(TypeInfo(string), TCustomDXPlay, 'GUID', TGUIDProperty);
+  {$ENDIF} // UseDirectPlay
 
   RegisterPropertyEditor(TypeInfo(TImageSprite), NIL, '', TSpriteProperty);
   RegisterPropertyEditor(TypeInfo(TImageSpriteEx), NIL, '', TSpriteProperty);
@@ -244,7 +246,9 @@ begin
      TDXWave,
      TDXWaveList,
      TDXInput,
+     {$IFDEF UseDirectPlay}
      TDXPlay,
+     {$ENDIF} // UseDirectPlay
      TDXSpriteEngine,
      TDXTimer,
      TDXPaintBox,

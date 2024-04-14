@@ -1,7 +1,15 @@
 unit DXPlayFm;
 
-interface
 {$INCLUDE DelphiXcfg.inc}
+
+{$IFNDEF UseDirectPlay}
+// If you want to use DXPlayFm.pas, please enable the IFDEF UseDirectPlay in DelphiXcfg.inc
+interface
+implementation
+{$ELSE} // !UseDirectPlay
+
+interface
+
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   StdCtrls, ExtCtrls, DXPlay, ActiveX, DXETable, DIB, 
@@ -427,6 +435,8 @@ begin
     end;
   end;
 end;
+
+{$ENDIF} // UseDirectPlay
 
 end.
 

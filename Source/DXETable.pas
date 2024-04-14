@@ -32,7 +32,9 @@ function D3DRMErrorMsg(ErrorCode: HRESULT): string;
 {$ENDIF}
 function DSoundErrorMsg(ErrorCode: HRESULT): string;
 function DInputErrorMsg(ErrorCode: HRESULT): string;
+{$IFDEF UseDirectPlay}
 function DPlayErrorMsg(ErrorCode: HRESULT): string;
+{$EndIf} // UseDirectPlay
 
 implementation
 
@@ -295,6 +297,7 @@ begin
     Result := WindowsErrorMsg(ErrorCode);
   end;
 end;
+{$IFDEF UseDirectPlay}
 {$IfDef DX9}
 function DPlayErrorMsg(ErrorCode: HRESULT): string;
 begin
@@ -428,4 +431,5 @@ begin
   end;
 end;
 {$EndIf}
+{$EndIf} // UseDirectPlay
 end.
