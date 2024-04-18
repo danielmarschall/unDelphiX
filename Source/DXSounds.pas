@@ -3243,33 +3243,45 @@ begin
 end;
 
 procedure TMusicListCollectionItem.SaveToFile(const MidiFileName: string);
-var F: file;
+var F: file; BakFileMode: integer;
 begin
-  AssignFile(F, MidiFileName);
-  Rewrite(F, 1);
+  BakFileMode := FileMode;
+  FileMode := 1; // Read/Write
   try
-    BlockWrite(F, FMusicDataProp.FMusicData[1], Length(FMusicDataProp.FMusicData));
+    AssignFile(F, MidiFileName);
+    Rewrite(F, 1);
+    try
+      BlockWrite(F, FMusicDataProp.FMusicData[1], Length(FMusicDataProp.FMusicData));
+    finally
+      CloseFile(F);
+    end;
   finally
-    CloseFile(F);
+    FileMode := BakFileMode;
   end;
 end;
 
 procedure TMusicListCollectionItem.LoadFromFile(const MidiFileName: string);
-var F: file; S: string; I: Integer;
+var F: file; S: string; I: Integer; BakFileMode: integer;
 begin
-  AssignFile(F, MidiFileName);
-  Reset(F, 1);
+  BakFileMode := FileMode;
+  FileMode := 0; // Read only
   try
-    SetLength(FMusicDataProp.FMusicData, FileSize(F));
-    BlockRead(F, FMusicDataProp.FMusicData[1], FileSize(F));
-    S := ExtractFileName(MidiFileName);
-    I := Pos(ExtractFileExt(S), S);
-    if I > 0 then S := Copy(S, 1, I - 1);
-    FMusicDataProp.Midiname := S;
+    AssignFile(F, MidiFileName);
+    Reset(F, 1);
+    try
+      SetLength(FMusicDataProp.FMusicData, FileSize(F));
+      BlockRead(F, FMusicDataProp.FMusicData[1], FileSize(F));
+      S := ExtractFileName(MidiFileName);
+      I := Pos(ExtractFileExt(S), S);
+      if I > 0 then S := Copy(S, 1, I - 1);
+      FMusicDataProp.Midiname := S;
+    finally
+      CloseFile(F);
+    end;
+    Name := ExtractFileName(MidiFileName);
   finally
-    CloseFile(F);
+    FileMode := BakFileMode;
   end;
-  Name := ExtractFileName(MidiFileName);
 end;
 
 function TMusicListCollectionItem.Size: Integer;
