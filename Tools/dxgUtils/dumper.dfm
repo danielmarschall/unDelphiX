@@ -11,7 +11,7 @@ object dump: Tdump
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Font.Style = []
-  Position = poDesktopCenter
+  Position = poScreenCenter
   TextHeight = 13
   object ControlBar1: TControlBar
     Left = 0
