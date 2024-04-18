@@ -45,7 +45,8 @@ type
     StopMusic: TToolButton;
     ImageList1: TImageList;
     DXMusic1: TDXMusic;
-    ListBox1: TListBox;
+    SaveDialog1: TSaveDialog;
+    SaveMidFile: TToolButton;
     procedure OpenButtonClick(Sender: TObject);
     procedure MidiListBoxClick(Sender: TObject);
     procedure PlayWavClick(Sender: TObject);
@@ -59,6 +60,7 @@ type
     procedure ImageDelClick(Sender: TObject);
     procedure ImageDownClick(Sender: TObject);
     procedure ImageUpClick(Sender: TObject);
+    procedure SaveMidFileClick(Sender: TObject);
   private
     { Private declarations }
     CurrentSnd:String;
@@ -218,6 +220,18 @@ begin
   If CurrentSnd <> '' Then
     DXMusic1.Midis.Find(CurrentSnd).Stop;
   CurrentSnd := '';
+end;
+
+procedure TMain.SaveMidFileClick(Sender: TObject);
+var
+  i: Integer;
+begin
+  if MidiListBox.Itemindex = -1 then exit;
+  if SaveDialog1.Execute then
+  begin
+    i := MidiListBox.itemindex;
+    DXMusic1.Midis.Items[i].SaveToFile(SaveDialog1.Filename);
+  end;
 end;
 
 end.

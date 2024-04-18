@@ -45,6 +45,8 @@ type
     DXSound1: TDXSound;
     StopMusic: TToolButton;
     ImageList1: TImageList;
+    ToolButton2: TToolButton;
+    SaveDialog1: TSaveDialog;
     procedure OpenButtonClick(Sender: TObject);
     procedure WaveListBoxClick(Sender: TObject);
     procedure PlayWavClick(Sender: TObject);
@@ -58,6 +60,7 @@ type
     procedure ImageDownClick(Sender: TObject);
     procedure ImageUpClick(Sender: TObject);
     procedure ImageDelClick(Sender: TObject);
+    procedure ToolButton2Click(Sender: TObject);
   private
     { Private declarations }
     CurrentSnd:String;
@@ -220,6 +223,18 @@ begin
   If CurrentSnd <> '' Then
     DXWaveList.Items.Find(CurrentSnd).Stop;
   CurrentSnd := '';
+end;
+
+procedure TMain.ToolButton2Click(Sender: TObject);
+var
+  i: Integer;
+begin
+  if WaveListBox.Itemindex = -1 then exit;
+  if SaveDialog1.Execute then
+  begin
+    i := WaveListBox.itemindex;
+    DXWaveList.Items[i].Wave.SaveToFile(SaveDialog1.Filename);
+  end;
 end;
 
 end.

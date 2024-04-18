@@ -54,12 +54,25 @@ object Main: TMain
       object AddBMP: TToolButton
         Left = 0
         Top = 0
+        Hint = 'Add bitmap file...'
         Caption = 'AddBMP'
         ImageIndex = 78
+        ParentShowHint = False
+        ShowHint = True
         OnClick = AddBMPClick
       end
-      object sep8: TToolButton
+      object ToolButton2: TToolButton
         Left = 23
+        Top = 0
+        Hint = 'Save BMP file...'
+        Caption = 'SaveBMP'
+        ImageIndex = 87
+        ParentShowHint = False
+        ShowHint = True
+        OnClick = ToolButton2Click
+      end
+      object sep8: TToolButton
+        Left = 46
         Top = 0
         Width = 8
         Caption = 'sep8'
@@ -67,21 +80,27 @@ object Main: TMain
         Style = tbsSeparator
       end
       object ImageDown: TToolButton
-        Left = 31
+        Left = 54
         Top = 0
+        Hint = 'Move item down'
         Caption = 'ImageDown'
         ImageIndex = 25
+        ParentShowHint = False
+        ShowHint = True
         OnClick = ImageDownClick
       end
       object ImageUp: TToolButton
-        Left = 54
+        Left = 77
         Top = 0
+        Hint = 'Move item up'
         Caption = 'ImageUp'
         ImageIndex = 108
+        ParentShowHint = False
+        ShowHint = True
         OnClick = ImageUpClick
       end
       object sep1: TToolButton
-        Left = 77
+        Left = 100
         Top = 0
         Width = 8
         Caption = 'sep1'
@@ -89,10 +108,13 @@ object Main: TMain
         Style = tbsSeparator
       end
       object ImageDel: TToolButton
-        Left = 85
+        Left = 108
         Top = 0
-        Caption = 'ToolButton2'
+        Hint = 'Delete item'
+        Caption = 'ImageDel'
         ImageIndex = 13
+        ParentShowHint = False
+        ShowHint = True
         OnClick = ImageDelClick
       end
     end
@@ -143,8 +165,11 @@ object Main: TMain
       object SysMem: TToolButton
         Left = 0
         Top = 0
+        Hint = 'System memory'
         Caption = 'SysMem'
         ImageIndex = 18
+        ParentShowHint = False
+        ShowHint = True
         Style = tbsCheck
         OnClick = SysMemClick
       end
@@ -159,8 +184,11 @@ object Main: TMain
       object Trans: TToolButton
         Left = 33
         Top = 0
+        Hint = 'Transparent'
         Caption = 'Trans'
         ImageIndex = 93
+        ParentShowHint = False
+        ShowHint = True
         Style = tbsCheck
         OnClick = TransClick
       end
@@ -169,13 +197,19 @@ object Main: TMain
         Top = 0
         Width = 23
         Height = 22
+        Hint = 'Get key color'
         Brush.Color = clFuchsia
+        ParentShowHint = False
+        ShowHint = True
       end
       object GetTrans: TToolButton
         Left = 81
         Top = 0
+        Hint = 'Get transparent color'
         Caption = 'GetTrans'
         ImageIndex = 17
+        ParentShowHint = False
+        ShowHint = True
       end
       object sep4: TToolButton
         Left = 106
@@ -188,24 +222,33 @@ object Main: TMain
       object ShowPat: TToolButton
         Left = 114
         Top = 0
+        Hint = 'Show pattern'
         Caption = 'ShowPat'
         ImageIndex = 56
+        ParentShowHint = False
+        ShowHint = True
         Style = tbsCheck
         OnClick = ShowPatClick
       end
       object ShowAuto: TToolButton
         Left = 139
         Top = 0
+        Hint = 'Show auto pattern bar'
         Caption = 'ShowAuto'
         ImageIndex = 20
+        ParentShowHint = False
+        ShowHint = True
         Style = tbsCheck
         OnClick = ShowAutoClick
       end
       object SkipShow: TToolButton
         Left = 164
         Top = 0
+        Hint = 'Show skip bar'
         Caption = 'SkipShow'
         ImageIndex = 65
+        ParentShowHint = False
+        ShowHint = True
         Style = tbsCheck
         OnClick = SkipShowClick
       end
@@ -220,8 +263,11 @@ object Main: TMain
       object FitImage: TToolButton
         Left = 197
         Top = 0
+        Hint = 'Fit image'
         Caption = 'FitImage'
         ImageIndex = 81
+        ParentShowHint = False
+        ShowHint = True
         Style = tbsCheck
         OnClick = FitImageClick
       end
@@ -243,8 +289,11 @@ object Main: TMain
       object UpdateName: TToolButton
         Left = 351
         Top = 0
+        Hint = 'Rename'
         Caption = 'UpdateName'
         ImageIndex = 83
+        ParentShowHint = False
+        ShowHint = True
         OnClick = UpdateNameClick
       end
     end
@@ -393,8 +442,11 @@ object Main: TMain
       object New: TToolButton
         Left = 0
         Top = 0
+        Hint = 'New DXG file'
         Caption = 'New'
         ImageIndex = 5
+        ParentShowHint = False
+        ShowHint = True
         OnClick = NewClick
       end
       object sep2: TToolButton
@@ -408,15 +460,21 @@ object Main: TMain
       object OpenButton: TToolButton
         Left = 33
         Top = 0
+        Hint = 'Open DXG file...'
         Caption = 'OpenButton'
         ImageIndex = 32
+        ParentShowHint = False
+        ShowHint = True
         OnClick = OpenButtonClick
       end
       object SaveButton: TToolButton
         Left = 58
         Top = 0
+        Hint = 'Save DXG file...'
         Caption = 'SaveButton'
         ImageIndex = 87
+        ParentShowHint = False
+        ShowHint = True
         OnClick = SaveButtonClick
       end
       object sep7: TToolButton
@@ -430,8 +488,11 @@ object Main: TMain
       object Info: TToolButton
         Left = 92
         Top = 0
+        Hint = 'About this program'
         Caption = 'Info'
         ImageIndex = 50
+        ParentShowHint = False
+        ShowHint = True
         OnClick = InfoClick
       end
     end
@@ -4483,5 +4544,12 @@ object Main: TMain
       FF0100008383C003FF81000186C7F81FFF800003CC6DF81FFFC1007FF838F81F
       FFE7007FFC7DFC3FFFFFFFFFFEFFFFFF00000000000000000000000000000000
       000000000000}
+  end
+  object SavePictureDialog1: TSavePictureDialog
+    DefaultExt = '*.bmp'
+    Filter = 'Bitmaps (*.bmp)|*.bmp'
+    Options = [ofOverwritePrompt, ofHideReadOnly, ofEnableSizing]
+    Left = 455
+    Top = 395
   end
 end

@@ -54,15 +54,25 @@ object Main: TMain
       object AddWAV: TToolButton
         Left = 0
         Top = 0
-        Hint = 'Add WAV file.'
+        Hint = 'Add WAV file...'
         Caption = 'AddWAV'
         ImageIndex = 62
         ParentShowHint = False
         ShowHint = True
         OnClick = AddWAVClick
       end
-      object sep8: TToolButton
+      object ToolButton2: TToolButton
         Left = 23
+        Top = 0
+        Hint = 'Save Wave File...'
+        Caption = 'SaveWave'
+        ImageIndex = 87
+        ParentShowHint = False
+        ShowHint = True
+        OnClick = ToolButton2Click
+      end
+      object sep8: TToolButton
+        Left = 46
         Top = 0
         Width = 8
         Caption = 'sep8'
@@ -70,9 +80,9 @@ object Main: TMain
         Style = tbsSeparator
       end
       object ImageDown: TToolButton
-        Left = 31
+        Left = 54
         Top = 0
-        Hint = 'Wave down.'
+        Hint = 'Move item down'
         Caption = 'ImageDown'
         ImageIndex = 25
         ParentShowHint = False
@@ -80,9 +90,9 @@ object Main: TMain
         OnClick = ImageDownClick
       end
       object ImageUp: TToolButton
-        Left = 54
+        Left = 77
         Top = 0
-        Hint = 'Wave up.'
+        Hint = 'Move item up'
         Caption = 'ImageUp'
         ImageIndex = 108
         ParentShowHint = False
@@ -90,7 +100,7 @@ object Main: TMain
         OnClick = ImageUpClick
       end
       object sep1: TToolButton
-        Left = 77
+        Left = 100
         Top = 0
         Width = 8
         Caption = 'sep1'
@@ -98,9 +108,9 @@ object Main: TMain
         Style = tbsSeparator
       end
       object ImageDel: TToolButton
-        Left = 85
+        Left = 108
         Top = 0
-        Hint = 'Wave remove.'
+        Hint = 'Delete item'
         Caption = 'ToolButton2'
         ImageIndex = 13
         ParentShowHint = False
@@ -146,7 +156,7 @@ object Main: TMain
         Tag = 222
         Left = 0
         Top = 0
-        Hint = 'Play wave.'
+        Hint = 'Play wave'
         Caption = 'PlayWav'
         ImageIndex = 112
         ParentShowHint = False
@@ -157,9 +167,11 @@ object Main: TMain
         Tag = 333
         Left = 25
         Top = 0
-        Hint = 'Stop Music.'
+        Hint = 'Stop Wave'
         Caption = 'StopMusic'
         ImageIndex = 63
+        ParentShowHint = False
+        ShowHint = True
         OnClick = StopMusicClick
       end
       object ToolButton1: TToolButton
@@ -180,7 +192,7 @@ object Main: TMain
       object UpdateName: TToolButton
         Left = 179
         Top = 0
-        Hint = 'Rename wave.'
+        Hint = 'Rename wave'
         Caption = 'UpdateName'
         ImageIndex = 83
         ParentShowHint = False
@@ -241,7 +253,7 @@ object Main: TMain
       object New: TToolButton
         Left = 0
         Top = 0
-        Hint = 'New DXW file.'
+        Hint = 'New DXW file'
         Caption = 'New'
         ImageIndex = 5
         ParentShowHint = False
@@ -259,7 +271,7 @@ object Main: TMain
       object OpenButton: TToolButton
         Left = 33
         Top = 0
-        Hint = 'Open DXW file'
+        Hint = 'Open DXW file...'
         Caption = 'OpenButton'
         ImageIndex = 32
         ParentShowHint = False
@@ -269,7 +281,7 @@ object Main: TMain
       object SaveButton: TToolButton
         Left = 58
         Top = 0
-        Hint = 'Save DXW file.'
+        Hint = 'Save DXW file...'
         Caption = 'SaveButton'
         ImageIndex = 87
         ParentShowHint = False
@@ -287,7 +299,7 @@ object Main: TMain
       object Info: TToolButton
         Left = 92
         Top = 0
-        Hint = 'Info'
+        Hint = 'About this program'
         Caption = 'Info'
         ImageIndex = 50
         ParentShowHint = False
@@ -341,8 +353,8 @@ object Main: TMain
     Top = 386
   end
   object ImageList1: TImageList
-    Left = 8
-    Top = 8
+    Left = 384
+    Top = 264
     Bitmap = {
       494C010174007800040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000040000000E0010000010020000000000000E0
@@ -4310,5 +4322,12 @@ object Main: TMain
       FF0100008383C003FF81000186C7F81FFF800003CC6DF81FFFC1007FF838F81F
       FFE7007FFC7DFC3FFFFFFFFFFEFFFFFF00000000000000000000000000000000
       000000000000}
+  end
+  object SaveDialog1: TSaveDialog
+    DefaultExt = '*.wav'
+    Filter = 'Wave Files (*.wav)|*.wav|All files (*.*)|*.*'
+    Options = [ofOverwritePrompt, ofHideReadOnly, ofEnableSizing]
+    Left = 456
+    Top = 304
   end
 end

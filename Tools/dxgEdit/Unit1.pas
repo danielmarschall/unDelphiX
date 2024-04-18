@@ -63,6 +63,8 @@ type
     ToolButton1: TToolButton;
     UpdateName: TToolButton;
     ImageList1: TImageList;
+    ToolButton2: TToolButton;
+    SavePictureDialog1: TSavePictureDialog;
     procedure OpenButtonClick(Sender: TObject);
     procedure ImageListBoxClick(Sender: TObject);
     procedure FitImageClick(Sender: TObject);
@@ -80,6 +82,7 @@ type
     procedure ImageDownClick(Sender: TObject);
     procedure ImageUpClick(Sender: TObject);
     procedure ImageDelClick(Sender: TObject);
+    procedure ToolButton2Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -206,6 +209,18 @@ begin
   i := ImageListBox.itemindex;
   dximagelist.Items[i].SystemMemory := SysMem.Down;
   dximagelist.Items[i].Restore;
+end;
+
+procedure TMain.ToolButton2Click(Sender: TObject);
+var
+  i: Integer;
+begin
+  if ImageListBox.Itemindex = -1 then exit;
+  if SavePictureDialog1.Execute then
+  begin
+    i := ImageListBox.itemindex;
+    dximagelist.Items[i].Picture.SaveToFile(SavePictureDialog1.Filename);
+  end;
 end;
 
 procedure TMain.TransClick(Sender: TObject);
