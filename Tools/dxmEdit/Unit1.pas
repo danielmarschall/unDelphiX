@@ -103,8 +103,7 @@ begin
   Label1.Caption := DXMusic1.Midis.items[i].name;
   Name.Text := DXMusic1.Midis.Items[i].Name;
   StatusBar.Panels[0].Text := 'MIDI Info: ' +
-    ' Size: ' + IntToStr(DXMusic1.Midis.Items[i].Size) {+
-    ' Duration: ' + IntToStr(DXMusic1.Midis.Items[i].Duration)}; // TODO: Why is duration always 0?
+    ' MIDI Size: ' + IntToStr(DXMusic1.Midis.Items[i].Size);
 end;
 
 procedure TMain.PlayWavClick(Sender: TObject);

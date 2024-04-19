@@ -914,4 +914,8 @@
 {When you need DirectPlay, please remove this definition. It is not enabled by default, because}
 {DirectPlay is not shipped with Windows by default, and the user might receive a warning}
 {that the app might not work if DirectPlay is not installed.}
-{$DEFINE UseDirectPlay}
+{ RECOMMENDATION: }
+{ - When you build/install DelphiX to your IDE, enable UseDirectPlay (so you have the DirectPlay VCL installed) }
+{ - When you compile an application which does not require DirectPlay, then disable UseDirectPlay, }
+{   to avoid that the end user receives a "This app needs DirectPlay" warning. }
+{.$DEFINE UseDirectPlay}
