@@ -94,12 +94,13 @@ procedure TMain.MidiListBoxClick(Sender: TObject);
 var i: integer;
 begin
   if MidiListBox.Itemindex = -1 then exit;
+  i := MidiListBox.itemindex {+ 1};
+  if Label1.Caption = DXMusic1.Midis.items[i].name then exit; // if you click into empty space without changing the selection
   try
     if CurrentSnd <> '' then StopMusic.Click;
   except
   end;
   CurrentSnd := '';
-  i := MidiListBox.itemindex {+ 1};
   Label1.Caption := DXMusic1.Midis.items[i].name;
   Name.Text := DXMusic1.Midis.Items[i].Name;
   StatusBar.Panels[0].Text := 'MIDI Info: ' +

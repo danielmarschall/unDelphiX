@@ -94,12 +94,13 @@ procedure TMain.WaveListBoxClick(Sender: TObject);
 var i: integer;
 begin
   if WaveListBox.Itemindex = -1 then exit;
+  i := WaveListBox.itemindex {+ 1};
+  if Label1.Caption = DXWaveList.items[i].name then exit; // if you click into empty space without changing the selection
   try
     if CurrentSnd <> '' then StopMusic.Click;
   except
   end;
   CurrentSnd := '';
-  i := WaveListBox.itemindex {+ 1};
   Label1.Caption := DXWaveList.items[i].name;
   Name.Text := DXWaveList.Items[i].Name;
   StatusBar.Panels[0].Text := 'Wave Info: ' +
