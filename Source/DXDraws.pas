@@ -2693,7 +2693,7 @@ procedure TDirectDrawPalette.LoadFromFile(const FileName: string);
 var
   Stream: TFileStream;
 begin
-  Stream := TFileStream.Create(FileName, fmOpenRead);
+  Stream := TFileStream.Create(FileName, fmOpenRead or fmShareDenyWrite);
   try
     LoadFromStream(Stream);
   finally

@@ -945,7 +945,7 @@ procedure TDirectSoundBuffer.LoadFromFile(const FileName: string);
 var
   Stream: TFileStream;
 begin
-  Stream := TFileStream.Create(FileName, fmOpenRead);
+  Stream := TFileStream.Create(FileName, fmOpenRead or fmShareDenyWrite);
   try
     LoadFromStream(Stream);
   finally
@@ -2268,7 +2268,7 @@ procedure TSoundEngine.EffectFile(const Filename: string; Loop, Wait: Boolean);
 var
   Stream: TFileStream;
 begin
-  Stream := TFileStream.Create(Filename, fmOpenRead);
+  Stream := TFileStream.Create(Filename, fmOpenRead or fmShareDenyWrite);
   try
     EffectStream(Stream, Loop, Wait);
   finally
