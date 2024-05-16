@@ -511,13 +511,13 @@ object Main: TMain
     ExplicitWidth = 624
   end
   object OpenDialog: TOpenDialog
-    DefaultExt = '*.dxg'
+    DefaultExt = 'dxg'
     Filter = 'DelphiX ImageList Files|*.dxg'
     Left = 532
     Top = 416
   end
   object SaveDialog: TSaveDialog
-    DefaultExt = '*.dxg'
+    DefaultExt = 'dxg'
     Filter = 'DelphiX ImageList Files|*.dxg'
     Options = [ofOverwritePrompt, ofHideReadOnly, ofEnableSizing]
     Left = 564
@@ -4546,7 +4546,7 @@ object Main: TMain
       000000000000}
   end
   object SavePictureDialog1: TSavePictureDialog
-    DefaultExt = '*.bmp'
+    DefaultExt = 'bmp'
     Filter = 'Bitmaps (*.bmp)|*.bmp'
     Options = [ofOverwritePrompt, ofHideReadOnly, ofEnableSizing]
     Left = 455

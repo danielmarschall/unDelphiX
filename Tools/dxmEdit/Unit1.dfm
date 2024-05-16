@@ -322,20 +322,20 @@ object Main: TMain
     ExplicitWidth = 629
   end
   object OpenDialog: TOpenDialog
-    DefaultExt = '*.dxm'
+    DefaultExt = 'dxm'
     Filter = 'DelphiX Music Files (*.dxm)|*.dxm'
     Left = 536
     Top = 416
   end
   object SaveDialog: TSaveDialog
-    DefaultExt = '*.dxm'
+    DefaultExt = 'dxm'
     Filter = 'DelphiX Music Files (*.dxm)|*.dxm'
     Options = [ofOverwritePrompt, ofHideReadOnly, ofEnableSizing]
     Left = 568
     Top = 416
   end
   object OpenDialog1: TOpenDialog
-    DefaultExt = '.mid'
+    DefaultExt = 'mid'
     Filter = 'MIDI Files (*.mid)|*.mid|All files (*.*)|*.*'
     Left = 504
     Top = 416
@@ -4324,7 +4324,7 @@ object Main: TMain
     Top = 362
   end
   object SaveDialog1: TSaveDialog
-    DefaultExt = '*.mid'
+    DefaultExt = 'mid'
     Filter = 'MIDI Files (*.mid)|*.mid|All files (*.*)|*.*'
     Options = [ofOverwritePrompt, ofHideReadOnly, ofEnableSizing]
     Left = 384

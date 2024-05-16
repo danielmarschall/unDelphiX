@@ -2291,7 +2291,7 @@ object DXGlueItEditor: TDXGlueItEditor
     end
   end
   object OpenDialog1: TOpenDialog
-    DefaultExt = '.bmp'
+    DefaultExt = 'bmp'
     Filter = 
       'All (*.dib;*.jpg;*.jpeg;*.bmp;*.ico)|*.dib;*.jpg;*.jpeg;*.bmp;*.' +
       'ico|Device Independent Bitmap (*.dib)|*.dib|JPEG Image File (*.j' +
@@ -2312,7 +2312,7 @@ object DXGlueItEditor: TDXGlueItEditor
     Top = 216
   end
   object SaveDialog1: TSaveDialog
-    DefaultExt = '.bmp'
+    DefaultExt = 'bmp'
     FileName = 'Glue.bmp'
     Left = 288
     Top = 352

@@ -459,7 +459,7 @@ object TDelphiXDIBEffectEditForm: TTDelphiXDIBEffectEditForm
     OnClick = btnCancelClick
   end
   object SavePictureDialog1: TSavePictureDialog
-    DefaultExt = '.bmp'
+    DefaultExt = 'bmp'
     Filter = 
       'All (*.dib;*.jpg;*.jpeg;*.jpg;*.jpeg;*.bmp;*.ico;*.emf;*.wmf)|*.' +
       'dib;*.jpg;*.jpeg;*.jpg;*.jpeg;*.bmp;*.ico;*.emf;*.wmf|Device Ind' +

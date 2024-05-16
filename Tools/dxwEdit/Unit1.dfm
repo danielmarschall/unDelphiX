@@ -322,13 +322,13 @@ object Main: TMain
     ExplicitWidth = 629
   end
   object OpenDialog: TOpenDialog
-    DefaultExt = '*.dxg'
+    DefaultExt = 'dxw'
     Filter = 'DelphiX WaveList Files (*.dxw)|*.dxw'
     Left = 536
     Top = 416
   end
   object SaveDialog: TSaveDialog
-    DefaultExt = '*.dxg'
+    DefaultExt = 'dxw'
     Filter = 'DelphiX WaveList Files (*.dxw)|*.dxw'
     Options = [ofOverwritePrompt, ofHideReadOnly, ofEnableSizing]
     Left = 568
@@ -341,7 +341,7 @@ object Main: TMain
     Top = 416
   end
   object OpenDialog1: TOpenDialog
-    DefaultExt = '*.wav'
+    DefaultExt = 'wav'
     Filter = 'Wave Files (*.wav)|*.wav|All files (*.*)|*.*'
     Left = 504
     Top = 416
@@ -4324,7 +4324,7 @@ object Main: TMain
       000000000000}
   end
   object SaveDialog1: TSaveDialog
-    DefaultExt = '*.wav'
+    DefaultExt = 'wav'
     Filter = 'Wave Files (*.wav)|*.wav|All files (*.*)|*.*'
     Options = [ofOverwritePrompt, ofHideReadOnly, ofEnableSizing]
     Left = 456
